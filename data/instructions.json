@@ -1,0 +1,345 @@
+[
+  {
+    "rule": "keywords:existence",
+    "instruction": "Include keywords \"{keywords}\" in your response",
+    "kwargs": {
+      "keywords": [
+        ["revolution", "garlic"],
+        ["aluminium", "minority"],
+        ["secure", "divide"],
+        ["assembly", "balance", "settlement"],
+        ["flower", "velvet", "treatment"],
+        ["shout", "drive", "lunch"]
+      ]
+    }
+  },
+  [
+    {
+      "rule": "keywords:frequency",
+      "instruction": "In your response, the word \"{keyword}\" should appear {relation} {frequency} times.",
+      "kwargs": {
+        "relation": ["less than"],
+        "keyword": [
+          "and",
+          "that",
+          "or",
+          "but",
+          "if",
+          "then",
+          "the",
+          "is",
+          "are",
+          "was",
+          "were",
+          "have",
+          "has"
+        ],
+        "frequency": [1, 2]
+      }
+    },
+    {
+      "rule": "keywords:frequency",
+      "instruction": "In your response, the word \"{keyword}\" should appear {relation} {frequency} times.",
+      "kwargs": {
+        "relation": ["at least"],
+        "keyword": [
+          "symbol",
+          "uncertainty",
+          "exploit",
+          "rich",
+          "ignorance",
+          "hostile",
+          "frame",
+          "lean",
+          "unity",
+          "sniff",
+          "bowel",
+          "golf",
+          "deposit"
+        ],
+        "frequency": [3, 4, 5, 6, 7]
+      }
+    }
+  ],
+
+  {
+    "rule": "keywords:forbidden_words",
+    "instruction": "In your response, refrain from using the following words: \"{forbidden_words}\"",
+    "kwargs": {
+      "forbidden_words": [
+        ["a", "an", "the", "and", "or", "but", "if", "then"],
+        [
+          "is",
+          "are",
+          "was",
+          "were",
+          "have",
+          "has",
+          "of",
+          "in",
+          "on",
+          "at",
+          "to",
+          "from",
+          "by"
+        ],
+        [
+          "with",
+          "without",
+          "over",
+          "under",
+          "between",
+          "among",
+          "through",
+          "during",
+          "before",
+          "after",
+          "since",
+          "until",
+          "while",
+          "as",
+          "than",
+          "for",
+          "so",
+          "because",
+          "although",
+          "though",
+          "if"
+        ],
+        [
+          "unless",
+          "while",
+          "when",
+          "where",
+          "how",
+          "why",
+          "what",
+          "which",
+          "that",
+          "this",
+          "these",
+          "those",
+          "some",
+          "any",
+          "one",
+          "two",
+          "three",
+          "four",
+          "five",
+          "six",
+          "seven",
+          "eight",
+          "nine",
+          "ten"
+        ]
+      ]
+    }
+  },
+  {
+    "rule": "keywords:letter_frequency",
+    "instruction": "In your response, the letter \"{letter}\" should appear {let_relation}, {let_frequency} times.",
+    "kwargs": {
+      "let_relation": "at least",
+      "letter": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "let_frequency": [5, 15, 20, 30, 40, 50, 60]
+    }
+  },
+  [
+    {
+      "rule": "language:response_language",
+      "instruction": "Your ENTIRE response should be in Korean, no other language is allowed.",
+      "kwargs": { "language": ["ko"] }
+    },
+    {
+      "rule": "language:response_language",
+      "instruction": "Your ENTIRE response should be in Swahili, no other language is allowed.",
+      "kwargs": { "language": ["sw"] }
+    },
+    {
+      "rule": "language:response_language",
+      "instruction": "Your ENTIRE response should be in Hindi, no other language is allowed.",
+      "kwargs": { "language": ["hi"] }
+    },
+    {
+      "rule": "language:response_language",
+      "instruction": "Your ENTIRE response should be in Bulgarian, no other language is allowed.",
+      "kwargs": { "language": ["bg"] }
+    },
+    {
+      "rule": "language:response_language",
+      "instruction": "Your ENTIRE response should be in Kannada, no other language is allowed.",
+      "kwargs": { "language": ["kn"] }
+    },
+    {
+      "rule": "language:response_language",
+      "instruction": "Your ENTIRE response should be in Marathi, no other language is allowed.",
+      "kwargs": { "language": ["mr"] }
+    }
+  ],
+
+  {
+    "rule": "length_constraints:number_paragraphs",
+    "instruction": "Your response should be {num_paragraphs} paragraphs long.",
+    "kwargs": { "num_paragraphs": [1, 2, 3, 4, 5, 6] }
+  },
+  {
+    "rule": "length_constraints:number_words",
+    "instruction": "Answer with {relation} {num_words} words.",
+    "kwargs": {
+      "relation": ["less than", "at least"],
+      "num_words": [50, 100, 150, 200, 250, 300]
+    }
+  },
+  {
+    "rule": "length_constraints:number_sentences",
+    "instruction": "Answer with {relation} {num_sentences} sentences.",
+    "kwargs": {
+      "relation": ["less than", "at least"],
+      "num_sentences": [5, 10, 15, 20, 25]
+    }
+  },
+  {
+    "rule": "length_constraints:nth_paragraph_first_word",
+    "instruction": "There should be {num_paragraphs} paragraphs. Paragraphs and only paragraphs are separated with each other by two line breaks. The paragraph  number {nth_paragraph} must start with word \"{first_word}\".",
+    "kwargs": {
+      "first_word": [
+        "assume",
+        "imagine",
+        "arrogant",
+        "ordinary",
+        "adviser",
+        "depressed"
+      ],
+      "num_paragraphs": [4, 5, 6, 7, 8],
+      "nth_paragraph": [1, 2, 3, 4]
+    }
+  },
+  {
+    "rule": "detectable_content:postscript",
+    "instruction": "At the end of your response, please explicitly add a postscript starting with {postscript_marker}",
+    "kwargs": { "postscript_marker": ["P.P.S", "P.S."] }
+  },
+  {
+    "rule": "detectable_content:number_placeholders",
+    "instruction": "The response must contain at least {num_placeholders} placeholders represented by square brackets, such as [address].",
+    "kwargs": { "num_placeholders": [1, 3, 5, 7, 9, 11, 13, 15] }
+  },
+  {
+    "rule": "detectable_format:number_bullet_lists",
+    "instruction": "Your answer must contain exactly {num_bullets} bullet points. Use the markdown bullet points such as: * This is a point.",
+    "kwargs": { "num_bullets": [1, 3, 5, 7, 9, 11, 13, 15] }
+  },
+  {
+    "rule": "detectable_format:title",
+    "instruction": "Your answer must contain a title, wrapped in double angular brackets, such as <<poem of joy>>.",
+    "kwargs": {}
+  },
+  {
+    "rule": "detectable_format:constrained_response",
+    "instruction": "Your answer must contain exactly one of the following phrases:\nMy answer is yes.\nMy answer is no.\nMy answer is maybe.",
+    "kwargs": {}
+  },
+  {
+    "rule": "detectable_format:number_highlighted_sections",
+    "instruction": "Highlight at least {num_highlights} sections in your answer with markdown, i.e. *highlighted section*",
+    "kwargs": { "num_highlights": [1, 3, 5, 7, 9, 11, 13, 15] }
+  },
+  {
+    "rule": "detectable_format:multiple_sections",
+    "instruction": "Highlight at least {num_highlights} sections in your answer with markdown, i.e. *highlighted section*",
+    "kwargs": {
+      "section_spliter": ["PARAGRAPH", "SECTION", "Paragraph", "Section"],
+      "num_sections": [2, 3, 4, 5, 6]
+    }
+  },
+  {
+    "rule": "detectable_format:json_format",
+    "instruction": "Entire output should be wrapped in JSON format.",
+    "kwargs": {}
+  },
+  {
+    "rule": "combination:repeat_prompt",
+    "instruction": "First, repeat the request without change, then give your answer (do not say anything before repeating the request; the request you need to repeat does not include this sentence)",
+    "kwargs": {}
+  },
+  {
+    "rule": "combination:two_responses",
+    "instruction": "Give two different responses. Responses and only responses should be separated by 6 asterisk symbols: ******.",
+    "kwargs": {}
+  },
+  {
+    "rule": "change_case:english_capital",
+    "instruction": "Your entire response should be in English, capital letters only.",
+    "kwargs": {}
+  },
+  {
+    "rule": "change_case:english_lowercase",
+    "instruction": "Your entire response should be in English, and in all lowercase letters. No capital letters are allowed.",
+    "kwargs": {}
+  },
+  {
+    "rule": "change_case:capital_word_frequency",
+    "instruction": "In your response, words with all capital letters should appear at least / around / at most {N} times.",
+    "kwargs": {
+      "capital_relation": ["at least", "less than"],
+      "capital_frequency": [1, 3, 5, 7, 9, 11, 13, 15, 20, 25]
+    }
+  },
+  {
+    "rule": "startend:end_checker",
+    "instruction": "Finish your response with this exact phrase {end phrase}. No other words should follow this phrase.",
+    "kwargs": {
+      "end_phrase": [
+        "Hope you agree with me.",
+        "Peace!",
+        "Is there anything else I can help with?",
+        "your love, and thanks.",
+        "Let me know if you have additional questions.",
+        "That is all you need!",
+        "Does this make sense?",
+        "I hope you find this helpful.",
+        "Thank you for your time.",
+        "My pleasure.",
+        "It was my pleasure.",
+        "I'm glad I could help!"
+      ]
+    }
+  },
+  {
+    "rule": "startend:quotation",
+    "instruction": "Wrap your entire response with double quotation marks.",
+    "kwargs": {}
+  },
+  {
+    "rule": "punctuation:no_comma",
+    "instruction": "Wrap your entire response with double quotation marks.",
+    "kwargs": {}
+  }
+]
