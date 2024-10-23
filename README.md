@@ -1,6 +1,6 @@
-# IFEvalExtended: Instruction Following Eval Extended
+# IFEval-extended: Instruction Following Eval Extended
 
-Extended version of IFEval with outogenerated instructions and prompts.
+Extended IFEval Benchmark with Integrated Prompt Generation.
 
 ## Dependencies
 
