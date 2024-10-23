@@ -2,3 +2,5 @@ absl-py
 langdetect
 nltk
 immutabledict
+openai
+python-dotenv

@@ -1,9 +1,6 @@
-# IFEval: Instruction Following Eval
+# IFEvalExtended: Instruction Following Eval Extended
 
-This is not an officially supported Google product.
-
-This repository contains source code and data for
-[Instruction Following Evaluation for Large Language Models](arxiv.org/abs/2311.07911)
+Extended version of IFEval with outogenerated instructions and prompts.
 
 ## Dependencies
 
@@ -11,6 +8,12 @@ Please make sure that all required python packages are installed via:
 
 ```
 pip3 install -r requirements.txt
+```
+
+## How to generate instructions and prompts
+
+```bash
+python3 generator.py --num_runs 500 --max_instructions 3
 ```
 
 ## How to run
@@ -24,21 +27,8 @@ instruction_following_eval. For example:
 # {"prompt": "Write a 300+ word summary ...", "response": "PUT YOUR MODEL RESPONSE HERE"}
 # {"prompt": "I am planning a trip to ...", "response": "PUT YOUR MODEL RESPONSE HERE"}
 # ...
-python3 -m instruction_following_eval.evaluation_main \
-  --input_data=./instruction_following_eval/data/input_data.jsonl \
-  --input_response_data=./instruction_following_eval/data/input_response_data_gpt4_20231107_145030.jsonl \
-  --output_dir=./instruction_following_eval/data/
-```
-
-## Reference
-
-If you use our work, please consider citing our preprint:
-
-```
-@article{zhou2023instruction,
-  title={Instruction-Following Evaluation for Large Language Models},
-  author={Zhou, Jeffrey and Lu, Tianjian and Mishra, Swaroop and Brahma, Siddhartha and Basu, Sujoy and Luan, Yi and Zhou, Denny and Hou, Le},
-  journal={arXiv preprint arXiv:2311.07911},
-  year={2023}
-}
+python3 -m evaluation_main \
+  --input_data=./data/input_llama_3_8b.jsonl \
+  --input_response_data=./data/input_response_llama_3_8b.jsonl \
+  --output_dir=./data/
 ```
