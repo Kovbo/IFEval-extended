@@ -2,6 +2,7 @@ import json
 import sys
 import os
 
+
 def transform_jsonl(input_file):
     # Generate output file name
     base_name = os.path.splitext(input_file)[0]
@@ -32,6 +33,7 @@ def transform_jsonl(input_file):
             outfile.write('\n')  # Add newline after each JSON object
 
     return output_file
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

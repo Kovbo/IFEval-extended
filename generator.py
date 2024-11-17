@@ -6,6 +6,7 @@ import json
 import random
 from datetime import datetime
 
+
 def generate_prompt():
     load_dotenv()
     client = OpenAI()
@@ -20,9 +21,11 @@ def generate_prompt():
 
     return completion.choices[0].message.content
 
+
 def load_instructions_from_json(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
+
 
 def generate_instruction(data, prompt):
     all_instructions = []
@@ -42,15 +45,13 @@ def generate_instruction(data, prompt):
     
     for key, value in kwargs.items():
         if isinstance(value, list):
+            chosen_value = random.choice(value)
+            kwargs[key] = chosen_value
+            placeholder = f"{{{key}}}"
+
             if key == "keywords" and isinstance(value[0], list):
-                chosen_value = random.choice(value)
-                kwargs[key] = chosen_value
-                placeholder = f"{{{key}}}"
                 instruction = instruction.replace(placeholder, ", ".join(chosen_value))
             else:
-                chosen_value = random.choice(value)
-                kwargs[key] = chosen_value
-                placeholder = f"{{{key}}}"
                 if isinstance(chosen_value, list):
                     chosen_value_str = ", ".join(map(str, chosen_value))
                 else:
@@ -69,6 +70,7 @@ def generate_instruction(data, prompt):
         "exclude": exclude
     }
 
+
 def combine_prompt_and_instructions(prompt, instructions):
     combined = prompt
 
@@ -77,10 +79,7 @@ def combine_prompt_and_instructions(prompt, instructions):
         for key, value in instruction['kwargs'].items():
             if key != "prompt_to_repeat":  # Skip prompt_to_repeat
                 placeholder = f"{{{key}}}"
-                if isinstance(value, list):
-                    replacement = ", ".join(map(str, value))
-                else:
-                    replacement = str(value)
+                replacement = ", ".join(map(str, value)) if isinstance(value, list) else str(value)
                 instruction['instruction'] = instruction['instruction'].replace(placeholder, replacement)
         
         # Add the instruction to the combined prompt
@@ -88,10 +87,12 @@ def combine_prompt_and_instructions(prompt, instructions):
     
     return combined
 
+
 def write_to_jsonl(data, file_path):
     with open(file_path, 'a') as file:
         json.dump(data, file)
         file.write('\n')
+
 
 def generate_unique_instructions(data, num_instructions, prompt):
     instructions = []
@@ -118,6 +119,7 @@ def generate_unique_instructions(data, num_instructions, prompt):
 
     return instructions
 
+
 def get_model_response(prompt):
     load_dotenv()
     client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
@@ -131,6 +133,7 @@ def get_model_response(prompt):
     )
 
     return completion.choices[0].message.content
+
 
 def main(num_runs, max_instructions):
     script_dir = os.path.dirname(os.path.abspath(__file__))

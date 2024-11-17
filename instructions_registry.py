@@ -169,8 +169,10 @@ def conflict_make(conflicts):
     Revised version of the dictionary. All instructions conflict with
     themselves. If A conflicts with B, B will conflict with A.
   """
+
   for key in conflicts:
     for k in conflicts[key]:
       conflicts[k].add(key)
     conflicts[key].add(key)
+
   return conflicts
