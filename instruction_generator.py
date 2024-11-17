@@ -6,14 +6,12 @@ def load_instructions_from_json(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
 
+
 def generate_instruction(data):
     # Flatten the list, handling both single objects and arrays
     all_instructions = []
     for item in data:
-        if isinstance(item, list):
-            all_instructions.extend(item)
-        else:
-            all_instructions.append(item)
+        all_instructions.extend(item) if isinstance(item, list) else all_instructions.append(item)
     
     # Choose a random element from the flattened list
     element = random.choice(all_instructions)
@@ -25,16 +23,14 @@ def generate_instruction(data):
     # Process the kwargs and replace placeholders in the instruction
     for key, value in kwargs.items():
         if isinstance(value, list):
+            chosen_value = random.choice(value)
+            kwargs[key] = chosen_value
+            placeholder = f"{{{key}}}"
+
             if key == "keywords" and isinstance(value[0], list):
                 # Handle the special case for keywords:existence
-                chosen_value = random.choice(value)
-                kwargs[key] = chosen_value
-                placeholder = f"{{{key}}}"
                 instruction = instruction.replace(placeholder, ", ".join(chosen_value))
             else:
-                chosen_value = random.choice(value)
-                kwargs[key] = chosen_value
-                placeholder = f"{{{key}}}"
                 # Convert list to string without brackets
                 if isinstance(chosen_value, list):
                     chosen_value_str = ", ".join(map(str, chosen_value))
@@ -47,6 +43,7 @@ def generate_instruction(data):
         "instruction": instruction,
         "kwargs": kwargs
     }
+
 
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
